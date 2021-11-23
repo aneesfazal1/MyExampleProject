@@ -1,41 +1,26 @@
 package com.lib.examplelibrary.utils
 
-import android.app.Dialog
-import android.app.ProgressDialog
+import android.view.LayoutInflater;
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import androidx.appcompat.app.AlertDialog
+import com.lib.examplelibrary.R
+
 
 
 class SpinnerDialog{
+    companion object {
+        fun getProgressDialog(context: Context): AlertDialog {
+            val dialogBuilder = AlertDialog.Builder(context)
+            val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            val dialogView = inflater.inflate(R.layout.progress, null)
+            dialogBuilder.setView(dialogView)
 
-   // var progress: ProgressDialog ?= null
-
-//    fun showLoadingDialog(context: Context) {
-//        if (progress == null) {
-//            progress = ProgressDialog(context)
-//            progress.setTitle("Please wait.")
-//            progress.setMessage("Loading....")
-//        }
-//        progress.show()
-//    }
-
-//    fun dismissLoadingDialog() {
-//        if (progress != null && progress.isShowing()) {
-//            progress.dismiss()
-//        }
-//    }
-
-    fun progressBar(context: Context, show:Boolean) {
-        val progressBar = ProgressDialog(context)
-        if (show) {
-            progressBar.setCancelable(true) //you can cancel it by pressing back button
-            progressBar.setMessage("File downloading ...")
-            progressBar.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL)
-            progressBar.progress = 0 //initially progress is 0
-            progressBar.max = 100 //sets the maximum value 100
-            progressBar.show() //displays the progress bar
-        }else{
-            progressBar.dismiss()
+            val alertDialog = dialogBuilder.create()
+            alertDialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            alertDialog.setCancelable(false)
+            return alertDialog
         }
     }
-
 }
