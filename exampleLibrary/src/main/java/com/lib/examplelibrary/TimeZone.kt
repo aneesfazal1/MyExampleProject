@@ -27,6 +27,7 @@ object TimeZone {
                 currentTimeZone = current.first().timezone.toString()
                 spinnerDialog.dismiss()
                 Toast.makeText(context, currentTimeZone, Toast.LENGTH_SHORT).show()
+                return currentTimeZone
             }
         })
         return currentTimeZone
