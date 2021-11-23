@@ -15,13 +15,12 @@ object TimeZone {
     private var myViewModel = MyViewModel(context)
     private var currentTimeZone:String = ""
 
-
     fun getTimeZone(context: Context, owner:LifecycleOwner):String{
-        SpinnerDialog().showLoadingDialog(context)
+        SpinnerDialog().progressBar(context,true)
         myViewModel.loadData().observe(owner, {current ->
             if (current != null) {
                 currentTimeZone = current.first().timezone.toString()
-                SpinnerDialog().dismissLoadingDialog()
+               SpinnerDialog().progressBar(context,false)
                 Toast.makeText(context, currentTimeZone, Toast.LENGTH_SHORT).show()
             }
         })
